@@ -1,0 +1,6 @@
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\bin\Debug\SensitiveDataStorage.dll
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\bin\Debug\SensitiveDataStorage.pdb
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Debug\SensitiveDataStorage.csprojAssemblyReference.cache
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Debug\SensitiveDataStorage.csproj.CoreCompileInputs.cache
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Debug\SensitiveDataStorage.dll
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Debug\SensitiveDataStorage.pdb
