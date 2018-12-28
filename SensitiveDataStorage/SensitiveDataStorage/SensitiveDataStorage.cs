@@ -23,34 +23,11 @@ namespace SensitiveDataStorage
                 using (FileStream fs = File.Create(filePath));
         }
 
-        /// <param name="ID">Behaves like an Array. (Starts on 0)</param>
-        public string ReadLine(string fileName, int ID)
+        public void Delete(string fileName)
         {
             string filePath = GetPathFromFileName(fileName);
 
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("Can't read from non-existing file: {0}", filePath);
-                return "ERROR";
-            }
-            if (EncryptionPassword == "")
-            {
-                Console.WriteLine("Can't read line.\nSensitiveDataStorage.EncryptionPassword is not assigned.");
-                return null;
-            }
-
-            string[] lines = File.ReadAllLines(filePath);
-            if (lines.Count() < ID + 1 || lines[ID].Length < 1) return "";
-
-            try
-            {
-                return Encrypt.DecryptString(lines[ID], EncryptionPassword);
-            }
-            catch
-            {
-                Console.WriteLine("Couln't decrypt Line:{1} in File:{0}", filePath, ID);
-                return "ERROR";
-            }
+            if (File.Exists(filePath)) File.Delete(filePath);
         }
 
         /// <param name="ID">Behaves like an Array. (Starts on 0)</param>
@@ -69,10 +46,75 @@ namespace SensitiveDataStorage
                 return;
             }
 
-            string[] lines = File.ReadAllLines(filePath);
-            Array.Resize(ref lines, ID + 1);
-            lines[ID] = Encrypt.EncryptString(input, EncryptionPassword);
-            File.WriteAllLines(GetPathFromFileName(fileName), lines);
+            string[] lines;
+
+            try
+            {
+                lines = Encryption.DecryptString(File.ReadAllLines(filePath)[0], EncryptionPassword).Split(',');
+                Array.Resize(ref lines, ID + 1);
+            }
+            catch { lines = new string[ID + 1]; }
+
+            lines[ID] = Encryption.EncryptString(input, EncryptionPassword);
+
+            string securedLine = "";
+            foreach (string s in lines)
+            {
+                if (securedLine != "") securedLine += "," + s;
+                else securedLine = s;
+            }
+
+            File.WriteAllText(filePath, Encryption.EncryptString(securedLine, EncryptionPassword));
+        }
+        
+        /// <param name="ID">Behaves like an Array. (Starts on 0)</param>
+        public string ReadLine(string fileName, int ID)
+        {
+            string filePath = GetPathFromFileName(fileName);
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Can't read from non-existing file: {0}", filePath);
+                return "ERROR";
+            }
+            if (EncryptionPassword == "")
+            {
+                Console.WriteLine("Can't read line.\nSensitiveDataStorage.EncryptionPassword is not assigned.");
+                return null;
+            }
+
+            string decryptedSecuredString = "";
+            try { decryptedSecuredString = Encryption.DecryptString(File.ReadAllText(filePath), EncryptionPassword); }
+            catch { return decryptedSecuredString; }
+            
+            string[] lines = decryptedSecuredString.Split(',');
+
+            if (lines.Count() < ID + 1 || lines[ID].Length < 1) return "";
+
+            try { return Encryption.DecryptString(lines[ID], EncryptionPassword); }
+            catch
+            {
+                Console.WriteLine("Couln't decrypt Line:{1} in File:{0}", filePath, ID);
+                return "ERROR";
+            }
+        }
+        
+        public void Clear(string fileName)
+        {
+            string filePath = GetPathFromFileName(fileName);
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("Can't reset non-existing file: {0}", filePath);
+                return;
+            }
+
+            File.WriteAllText(filePath, "");
+        }
+        
+        public string GetStorageFolderPath()
+        {
+            return applicationFolder;
         }
 
         private string GetPathFromFileName(string fileName)
@@ -81,7 +123,7 @@ namespace SensitiveDataStorage
         }
     }
 
-    static class Encrypt
+    static class Encryption
     {
         private const string initVector = "pemgail9uzpgzl88";
         private const int keysize = 256;
@@ -123,4 +165,5 @@ namespace SensitiveDataStorage
             return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
         }
     }
+
 }
