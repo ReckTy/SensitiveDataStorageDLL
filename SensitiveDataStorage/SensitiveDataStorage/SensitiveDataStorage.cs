@@ -13,7 +13,7 @@ namespace SensitiveDataStorage
 
         public string EncryptionPassword = "";
 
-        public void Create(string fileName)
+        public void CreateFile(string fileName)
         {
             string filePath = GetPathFromFileName(fileName);
 
@@ -23,7 +23,7 @@ namespace SensitiveDataStorage
                 using (FileStream fs = File.Create(filePath));
         }
 
-        public void Delete(string fileName)
+        public void DeleteFile(string fileName)
         {
             string filePath = GetPathFromFileName(fileName);
 
@@ -99,7 +99,7 @@ namespace SensitiveDataStorage
             }
         }
         
-        public void Clear(string fileName)
+        public void ClearFile(string fileName)
         {
             string filePath = GetPathFromFileName(fileName);
 

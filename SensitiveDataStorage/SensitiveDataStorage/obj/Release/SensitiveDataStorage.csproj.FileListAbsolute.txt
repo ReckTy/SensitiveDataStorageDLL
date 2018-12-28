@@ -3,4 +3,3 @@ C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDat
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Release\SensitiveDataStorage.csproj.CoreCompileInputs.cache
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Release\SensitiveDataStorage.dll
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Release\SensitiveDataStorage.pdb
-C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\SensitiveDataStorage\obj\Release\SensitiveDataStorage.csprojAssemblyReference.cache

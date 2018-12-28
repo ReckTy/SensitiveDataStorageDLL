@@ -20,7 +20,7 @@ namespace ExampleUsage
             Console.WriteLine("Storage Folder Path: " + sds.GetStorageFolderPath() + "\n");
 
             // Create the file:
-            sds.Create("ExampleFile");
+            sds.CreateFile("ExampleFile");
 
             // Write information(string) to specified line:
             sds.WriteLine("ExampleFile", 0, "Encrypted string 1");
@@ -31,13 +31,13 @@ namespace ExampleUsage
             Console.WriteLine(sds.ReadLine("ExampleFile", 1) + "\n");
             
             // Read information(string) from specified line after file has been cleared:
-            sds.Clear("ExampleFile");
+            sds.ClearFile("ExampleFile");
             Console.WriteLine("ExampleFile Cleared.");
             Console.WriteLine(sds.ReadLine("ExampleFile", 0));
             Console.WriteLine(sds.ReadLine("ExampleFile", 1));
 
             // Delete the file
-            sds.Delete("ExampleFile");
+            sds.DeleteFile("ExampleFile");
         }
     }
 }

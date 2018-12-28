@@ -3,8 +3,7 @@ C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDat
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\bin\Release\ExampleUsage.pdb
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\bin\Release\SensitiveDataStorage.dll
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\bin\Release\SensitiveDataStorage.pdb
-C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\obj\Release\ExampleUsage.csprojAssemblyReference.cache
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\obj\Release\ExampleUsage.csproj.CoreCompileInputs.cache
-C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\obj\Release\ExampleUsage.csproj.CopyComplete
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\obj\Release\ExampleUsage.exe
 C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\obj\Release\ExampleUsage.pdb
+C:\Users\Mattias\Desktop\Development\Visual Studio\Projects\DLL-dev\SensitiveDataStorage\ExampleUsage\obj\Release\ExampleUsage.csprojResolveAssemblyReference.cache
