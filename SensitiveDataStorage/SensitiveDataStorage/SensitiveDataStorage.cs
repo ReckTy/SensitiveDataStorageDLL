@@ -4,15 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Management;
 
 namespace SensitiveDataStorage
 {
     public class SensitiveDataStorage
     {
         private readonly string applicationFolder = Environment.ExpandEnvironmentVariables(@"%AppData%\" + Process.GetCurrentProcess().ProcessName);
-
-        public string EncryptionPassword = "";
-
+        
+        private string CPUID = "";
+        private string encryptionPassword = "";
+        public string EncryptionPassword
+        {
+            get
+            {
+                return encryptionPassword + CPUID;
+            }
+            set
+            {
+                encryptionPassword = value;
+                if (CPUID == "") CPUID = GetCPUID();
+            }
+        }
+        
         public void CreateFile(string fileName)
         {
             string filePath = GetPathFromFileName(fileName);
@@ -120,6 +134,24 @@ namespace SensitiveDataStorage
         private string GetPathFromFileName(string fileName)
         {
             return applicationFolder + @"\" + fileName + ".txt";
+        }
+
+        private string GetCPUID()
+        {
+            string cpuInfo = string.Empty;
+            ManagementClass mc = new ManagementClass("win32_processor");
+            ManagementObjectCollection moc = mc.GetInstances();
+
+            foreach (ManagementObject mo in moc)
+            {
+                if (cpuInfo == "")
+                {
+                    //Get only the first CPU's ID
+                    cpuInfo = mo.Properties["processorID"].Value.ToString();
+                    break;
+                }
+            }
+            return cpuInfo;
         }
     }
 
