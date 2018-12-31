@@ -23,7 +23,7 @@ namespace SensitiveDataStorage
             set
             {
                 encryptionPassword = value;
-                if (CPUID == "") CPUID = GetCPUID();
+                if (CPUID == "") CPUID = HardDriveID.Get();
             }
         }
         
@@ -135,23 +135,43 @@ namespace SensitiveDataStorage
         {
             return applicationFolder + @"\" + fileName + ".txt";
         }
+        
+        
 
-        private string GetCPUID()
+    }
+
+    static class HardDriveID
+    {
+        public static string Get()
         {
-            string cpuInfo = string.Empty;
-            ManagementClass mc = new ManagementClass("win32_processor");
-            ManagementObjectCollection moc = mc.GetInstances();
+            return Identifier("Win32_DiskDrive", "Model")
+            + Identifier("Win32_DiskDrive", "Manufacturer")
+            + Identifier("Win32_DiskDrive", "Signature")
+            + Identifier("Win32_DiskDrive", "TotalHeads");
+        }
 
-            foreach (ManagementObject mo in moc)
+        private static string Identifier(string wmiClass, string wmiProperty)
+        {
+            string result = "";
+            System.Management.ManagementClass mc =
+        new System.Management.ManagementClass(wmiClass);
+            System.Management.ManagementObjectCollection moc = mc.GetInstances();
+            foreach (System.Management.ManagementObject mo in moc)
             {
-                if (cpuInfo == "")
+                //Only get the first one
+                if (result == "")
                 {
-                    //Get only the first CPU's ID
-                    cpuInfo = mo.Properties["processorID"].Value.ToString();
-                    break;
+                    try
+                    {
+                        result = mo[wmiProperty].ToString();
+                        break;
+                    }
+                    catch
+                    {
+                    }
                 }
             }
-            return cpuInfo;
+            return result;
         }
     }
 
