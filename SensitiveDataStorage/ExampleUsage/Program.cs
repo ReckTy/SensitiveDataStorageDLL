@@ -29,13 +29,13 @@ namespace ExampleUsage
             // Read information(string) from specified line:
             Console.WriteLine(sds.ReadLine("ExampleFile", 0));
             Console.WriteLine(sds.ReadLine("ExampleFile", 1) + "\n");
-            
+
             // Read information(string) from specified line after file has been cleared:
             sds.ClearFile("ExampleFile");
             Console.WriteLine("ExampleFile Cleared.");
             Console.WriteLine(sds.ReadLine("ExampleFile", 0));
             Console.WriteLine(sds.ReadLine("ExampleFile", 1));
-
+            
             // Delete the file
             sds.DeleteFile("ExampleFile");
         }

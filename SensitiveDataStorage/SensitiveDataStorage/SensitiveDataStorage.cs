@@ -65,7 +65,7 @@ namespace SensitiveDataStorage
             try
             {
                 lines = Encryption.DecryptString(File.ReadAllLines(filePath)[0], EncryptionPassword).Split(',');
-                Array.Resize(ref lines, ID + 1);
+                if ((lines.Length) < ID + 1) Array.Resize(ref lines, ID + 1);
             }
             catch { lines = new string[ID + 1]; }
 
@@ -77,7 +77,7 @@ namespace SensitiveDataStorage
                 if (securedLine != "") securedLine += "," + s;
                 else securedLine = s;
             }
-
+            
             File.WriteAllText(filePath, Encryption.EncryptString(securedLine, EncryptionPassword));
         }
         
